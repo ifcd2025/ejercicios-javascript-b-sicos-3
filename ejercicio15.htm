@@ -25,7 +25,98 @@
         <input type="button" name="vaciar" id="vaciar" value="vaciar" class="btn btn-danger">
 
     </main>
-    <script>window.confirm("Do you want to open in new tab?");</script>
+   <script>
+
+        function eliminar(evt) {
+            const agenda = document.getElementById("agenda");
+            // En este caso valdría tanto currentTarget como target
+            // ya que el botón es el que se ha suscrito y no tiene hijos
+            // parentNode devuelve el nodo padre, que en este caso es el
+            // li
+            agenda.removeChild(evt.currentTarget.parentNode);
+
+            // closest devuelve el primer padre, abuelo, ... que
+            //  cumpla el selector indicado (cualquier selector css)
+            agenda.removeChild(evt.currentTarget.closest("li"));
+        }
+
+        function insertar() {
+            const nombre = document.getElementById("nombre");
+            // trim borra espacios (incluye enter, tabulaciones, ...)
+            //  a la derecha y a la izquierda
+            if(nombre.value.trim() == "") {
+                window.alert("El nombre no debe estar vacio");
+                nombre.focus();
+                nombre.value = "";
+                return;
+            }
+            const hombre = document.getElementById("hombre");
+            const mujer = document.getElementById("mujer");
+            if(hombre.checked == false && mujer.checked == false) {
+            //if(!hombre.checked && !mujer.checked) {
+                window.alert("Debes seleccionar hombre o mujer");
+                return;
+            }
+            const li = document.createElement("li");
+            li.classList.add("d-flex", "my-2"); 
+            const img = document.createElement("img");
+            if(hombre.checked /* == true */) {
+                img.src = "hombre.png";
+            } else {
+                img.src = "mujer.png";
+            }
+            //img.src = hombre.checked ? "hombre.png" : "mujer.png";
+            li.appendChild(img);
+            const span = document.createElement("span");
+            span.textContent = nombre.value.trim();
+            li.appendChild(span);
+            const boton = document.createElement("input");
+            boton.type = "button";
+            boton.value = "X";
+            boton.classList.add("btn", "btn-danger", "btn-sm", "ms-4");
+            boton.addEventListener("click", eliminar); 
+            span.classList.add("flex-grow-1")
+            li.appendChild(boton);
+
+            document.getElementById("agenda").appendChild(li);
+            nombre.value = "";
+            nombre.focus();
+        }
+
+        function comprobarEnter(evt) {
+            if(evt.key == "Enter") {
+                insertar();
+            }
+        }
+
+        function eliminar() {
+            // confirm devuelve true si acepta o false si no
+            const respuesta = window.confirm("¿Estás seguro?");
+            if(respuesta) {
+                document.getElementById("agenda").textContent = "";
+            }
+        }
+
+        document.getElementById("insertar")
+            .addEventListener("click", insertar);
+        document.getElementById("nombre")
+            .addEventListener("keypress", comprobarEnter);
+        /* Con función arrow */
+       /* document.getElementById("nombre")
+            .addEventListener("keypress", evt => {
+                if(evt.key == "Enter") {
+                    insertar();
+                }
+            });
+        */
+
+        document.getElementById("vaciar")
+            .addEventListener("click", eliminar);
+               
+    </script>
+   
+</body>
+</html>
    
 </body>
 </html>
