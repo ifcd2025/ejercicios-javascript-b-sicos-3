@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>ejercicio </title>
+</head>
+
+<body>
+   <h1>Todo sale en consola</h1>
+   <script>
+      let mayores = 0;
+      for(let i = 1; i <= 10; i++) {
+         const numero = Math.floor(Math.random() * 50 + 1);
+         if(numero > 25 ) {
+            console.log(numero);
+            mayores++; // mayores += 1; mayores = mayores + 1;
+         }
+      }
+      //document.write("Hay " + mayores + " mayores a 25");
+      console.log("Hay " + mayores + " mayores a 25");
+      //console.log(`Hay ${mayores} mayores a 25`);
+   </script>
+</body>
+
+</html>

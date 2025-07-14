@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>ejercicio </title>
+</head>
+
+<body>
+   <h1>Todo sale en consola</h1>
+   <script>
+      let suspensos = 0, aprobados = 0, notables = 0, sobresalientes = 0;
+      for (let i = 1; i <= 15; i++) {
+         const nota = Math.floor(Math.random() * 11);
+         if (nota < 5) {
+            suspensos++;
+         } else if (nota < 7) { // if(nota >= 5 && nota < 7) {
+            aprobados++;
+         } else if (nota < 9) { // if(nota >= 7 && nota < 9) {
+            notables++;
+         } else {
+            sobresalientes++;
+         }
+      }
+      console.log(`Hay ${suspensos} suspensos`);
+      console.log(`Hay ${aprobados} aprobados`);
+      console.log(`Hay ${notables} notables`);
+      console.log(`Hay ${sobresalientes} sobresalientes`);
+   </script>
+</body>
+
+</html>
